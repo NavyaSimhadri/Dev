@@ -1,0 +1,24 @@
+2. Create flask-deployment.yaml
+In VS Code, inside D:\Dev\flaskk, create a file named flask-deployment.yaml.
+
+Paste the following configuration:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-student-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-student-api
+  template:
+    metadata:
+      labels:
+        app: flask-student-api
+    spec:
+      containers:
+        - name: flask-student-container
+          image: flask-student-api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
